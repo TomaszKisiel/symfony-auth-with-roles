@@ -48,7 +48,7 @@ you use the API. If something is missing or the page is not loading properly, re
 | GET | /api/users/{id} | id | 200 | 401,403 |
 | POST | /api/users | email, password, roles, first_name, last_name, age | 201 | 400,401,403 |
 | PATCH | /api/users/{id} | email, password, roles, first_name, last_name, age | 200 | 400,401,403 |
-| DELETE | /api/users/{id} | id | 200 | 403 |
+| DELETE | /api/users/{id} | id | 200 | 401,403 |
 
 ## :sob: Troubleshooting
 
