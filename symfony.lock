@@ -130,6 +130,9 @@
             "config/packages/lexik_jwt_authentication.yaml"
         ]
     },
+    "monolog/monolog": {
+        "version": "1.26.0"
+    },
     "myclabs/deep-copy": {
         "version": "1.10.2"
     },
@@ -268,8 +271,23 @@
     "sebastian/version": {
         "version": "3.0.2"
     },
+    "sensio/framework-extra-bundle": {
+        "version": "5.2",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "5.2",
+            "ref": "fb7e19da7f013d0d422fa9bce16f5c510e27609b"
+        },
+        "files": [
+            "config/packages/sensio_framework_extra.yaml"
+        ]
+    },
     "symfony/asset": {
         "version": "v4.4.22"
+    },
+    "symfony/browser-kit": {
+        "version": "v4.4.24"
     },
     "symfony/cache": {
         "version": "v4.4.24"
@@ -303,6 +321,9 @@
         "version": "v2.4.0"
     },
     "symfony/doctrine-bridge": {
+        "version": "v4.4.24"
+    },
+    "symfony/dom-crawler": {
         "version": "v4.4.24"
     },
     "symfony/dotenv": {
@@ -386,11 +407,44 @@
     "symfony/mime": {
         "version": "v4.4.24"
     },
+    "symfony/monolog-bridge": {
+        "version": "v4.4.22"
+    },
+    "symfony/monolog-bundle": {
+        "version": "3.7",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.7",
+            "ref": "329f6a5ef2e7aa033f802be833ef8d1268dd0848"
+        },
+        "files": [
+            "config/packages/dev/monolog.yaml",
+            "config/packages/prod/deprecations.yaml",
+            "config/packages/prod/monolog.yaml",
+            "config/packages/test/monolog.yaml"
+        ]
+    },
     "symfony/options-resolver": {
         "version": "v4.4.20"
     },
     "symfony/orm-pack": {
         "version": "v2.1.0"
+    },
+    "symfony/phpunit-bridge": {
+        "version": "5.1",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "5.1",
+            "ref": "bf16921ef8309a81d9f046e9b6369c46bcbd031f"
+        },
+        "files": [
+            ".env.test",
+            "bin/phpunit",
+            "phpunit.xml.dist",
+            "tests/bootstrap.php"
+        ]
     },
     "symfony/polyfill-intl-icu": {
         "version": "v1.22.1"
