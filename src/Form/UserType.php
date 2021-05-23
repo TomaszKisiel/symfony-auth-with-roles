@@ -23,10 +23,8 @@ class UserType extends AbstractType
                 'choices' => [ 'ROLE_ADMIN' => 'ROLE_ADMIN', 'ROLE_USER' => 'ROLE_USER' ],
                 'multiple' => false,
                 'expanded' => false,
-                'required' => false,
                 'empty_data' => ["ROLE_USER"]
             ] )
-            ->add('password', PasswordType::class)
             ->add('first_name', TextType::class)
             ->add('last_name', TextType::class)
             ->add('age', NumberType::class)
