@@ -25,6 +25,7 @@ class UserType extends AbstractType
                 'expanded' => false,
                 'empty_data' => ["ROLE_USER"]
             ] )
+            ->add('password', PasswordType::class)
             ->add('first_name', TextType::class)
             ->add('last_name', TextType::class)
             ->add('age', NumberType::class)
