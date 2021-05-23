@@ -43,7 +43,7 @@ you use the API. If something is missing or the page is not loading properly, re
 | GET | /api/register | email, password, first_name, last_name, age | 201 | 400 |
 | GET | /api/login | email, password | 200 | 400 |
 | GET | /api/profile | - | 200 | 401 |
-| PATCH | /api/profile | email, password, roles, first_name, last_name, age | 200 | 401 |
+| PATCH | /api/profile | email, password, roles, first_name, last_name, age | 200 | 400|401 |
 | GET | /api/users | - | 200 | 401,403 |
 | GET | /api/users/{id} | id | 200 | 401,403 |
 | POST | /api/users | email, password, roles, first_name, last_name, age | 201 | 400,401,403 |
