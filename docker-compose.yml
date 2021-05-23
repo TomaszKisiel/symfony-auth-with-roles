@@ -1,0 +1,45 @@
+version: '3'
+
+services:
+    nginx:
+        build:
+            context: .
+            dockerfile: ./docker/nginx/Dockerfile
+        volumes:
+            - .:/var/www/symfony
+        depends_on:
+            - php
+        ports:
+            - 80:80
+        networks:
+            - symfony
+    php:
+        build:
+            context: .
+            dockerfile: ./docker/php/Dockerfile
+        environment:
+            APP_ENV: dev
+        volumes:
+            - .:/var/www/symfony
+        networks:
+            - symfony
+    mysql:
+        image: mysql:5.7
+        environment:
+            MYSQL_DATABASE: symfony
+            MYSQL_USER: symfony
+            MYSQL_PASSWORD: symfony
+            MYSQL_ROOT_PASSWORD: root
+        ports:
+            - 3307:3306
+        volumes:
+            - mysql:/var/lib/mysql
+        networks:
+            - symfony
+
+volumes:
+    mysql:
+        driver: local
+
+networks:
+    symfony:
