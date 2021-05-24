@@ -18,6 +18,13 @@ Start docker service on your machine and issue the command.
 docker-compose up -d --build
 ```
 
+Install dependencies and migrate database.
+
+```
+docker-compose exec php composer install
+docker-compose exec php bin/console doctrine:migrations:migrate
+```
+
 Now the project is running on ```localhost``` port ```80```. Have fun!
 
 ## :memo: API documentation

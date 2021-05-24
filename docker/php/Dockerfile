@@ -10,5 +10,3 @@ COPY . /var/www/symfony
 RUN chown -R www-data:www-data /var/www
 
 WORKDIR /var/www/symfony
-
-CMD [ "composer install", "bin/console doctrine:migrations:migrate" ]
