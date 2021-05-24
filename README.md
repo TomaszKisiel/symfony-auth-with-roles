@@ -58,7 +58,7 @@ chown -R <your_user>:<your_group> .
 ```
 
 To get access to admin-only routes you must first change your role 
-via [/api/profile] path with ```PATCH``` method. E.g:
+via [/api/profile]() path with ```PATCH``` method. E.g:
 
 ```
 curl -X PATCH "http://localhost/api/profile" -H "accept: application/json" -H "Authorization: Bearer <your_token>" -H "Content-Type: application/json" -d "{\"roles\":\"ROLE_ADMIN\"}"
