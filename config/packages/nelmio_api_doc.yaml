@@ -1,9 +1,65 @@
 nelmio_api_doc:
     documentation:
+        servers:
+            -   url: http://localhost
         info:
-            title: My App
-            description: This is an awesome app!
+            title: Symfony Authentication with Roles.
+            description: REST API with JWT authentication and user roles.
             version: 1.0.0
+            contact:
+                email: tkisiel5w4@yahoo.com
+            license:
+                name: MIT
+        components:
+            securitySchemes:
+                Bearer:
+                    type: http
+                    scheme: bearer
+                    bearerFormat: JWT
+        paths:
+            /api/login:
+                post:
+                    summary: Allows user issue a new authentication token
+                    tags:
+                        - Authentication
+                    requestBody:
+                        required: true
+                        content:
+                            application/json:
+                                schema:
+                                    type: object
+                                    properties:
+                                        email:
+                                            type: string
+                                            example: john.doe@example.com
+                                        password:
+                                            type: string
+                                            example: secret
+                    responses:
+                        200:
+                            description: "New token was successfully created."
+                            content:
+                                application/json:
+                                    schema:
+                                        type: object
+                                        properties:
+                                            token:
+                                                type: string
+                                                example: eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9
+                        401:
+                            description: "The given data doesn't march to any existing account."
+                            content:
+                                application/json:
+                                    schema:
+                                        type: object
+                                        properties:
+                                            code:
+                                                type: integer
+                                                example: 401
+                                            message:
+                                                type: string
+                                                example: Invalid cridentials.
+        security:
     areas: # to filter documented areas
         path_patterns:
-            - ^/api(?!/doc$) # Accepts routes under /api except /api/doc
+            - ^/api(?!/docs$|/doc.json$) # Accepts routes under /api except /api/doc

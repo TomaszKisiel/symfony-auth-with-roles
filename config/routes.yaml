@@ -1,2 +1,7 @@
 login:
     path: /api/login
+
+app.swagger_ui:
+    path: /api/docs
+    methods: GET
+    defaults: { _controller: nelmio_api_doc.controller.swagger_ui }

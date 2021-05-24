@@ -37,18 +37,21 @@ Now the project is running on ```localhost``` port ```80```. Have fun!
 There is Swagger documentation at ([http://localhost/api/docs](http://localhost/api/docs)) to help 
 you use the API. If something is missing or the page is not loading properly, report the problem.
 
+Thanks to swagger UI you can deal with this api without any external api tools like 
+Postman or Insomnia.
+
 | Method | Route | Parameters | Success response | Failure response
 |-------------|---|---| :---: | :---: |
 | GET | /api/docs | - | 200 | - |
-| GET | /api/register | email, password, first_name, last_name, age | 201 | 400, 401 |
-| GET | /api/login | email, password | 200 | 400, 401 |
-| GET | /api/profile | - | 200 | 403 |
-| PATCH | /api/profile | email, password, roles, first_name, last_name, age | 200 | 401,403 |
-| GET | /api/users | - | 200 | 403 |
-| GET | /api/users/{id} | id | 200 | 403 |
-| POST | /api/users | email, password, roles, first_name, last_name, age | 201 | 401,403 |
-| PATCH | /api/users/{id} | email, password, roles, first_name, last_name, age | 200 | 401,403 |
-| DELETE | /api/users/{id} | id | 200 | 403 |
+| GET | /api/register | email, password, first_name, last_name, age | 201 | 400 |
+| GET | /api/login | email, password | 200 | 401 |
+| GET | /api/profile | - | 200 | 401 |
+| PATCH | /api/profile | email, password, roles, first_name, last_name, age | 200 | 400, 401 |
+| GET | /api/users | - | 200 | 401, 403 |
+| GET | /api/users/{id} | id | 200 | 401, 403 |
+| POST | /api/users | email, password, roles, first_name, last_name, age | 201 | 400,401,403 |
+| PATCH | /api/users/{id} | email, password, roles, first_name, last_name, age | 200 | 400,401,403 |
+| DELETE | /api/users/{id} | id | 200 | 401,403 |
 
 ## :sob: Troubleshooting
 
@@ -57,6 +60,13 @@ docker, you should first take over them and try again.
 
 ```
 chown -R <your_user>:<your_group> .
+```
+
+To get access to admin-only routes you must first change your role 
+via [/api/profile] path with ```PATCH``` method. E.g:
+
+```
+curl -X PATCH "http://localhost/api/profile" -H "accept: application/json" -H "Authorization: Bearer <your_token>" -H "Content-Type: application/json" -d "{\"roles\":\"ROLE_ADMIN\"}"
 ```
 
 ## :clipboard: License

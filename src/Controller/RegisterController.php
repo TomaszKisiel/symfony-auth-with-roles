@@ -2,12 +2,13 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
 use App\Form\UserType;
+use App\Entity\User;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Nelmio\ApiDocBundle\Annotation\Model;
+use OpenApi\Annotations as OA;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -17,7 +18,30 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use App\Swagger\Register\CreatedResponse;
+use App\Swagger\Register\RequestBody;
+use App\Swagger\Register\InvalidResponse;
 
+/**
+ * Class RegisterController
+ * @OA\Post(summary="Allows register new user account")
+ * @OA\RequestBody(
+ *     required=true,
+ *     @Model(type=RequestBody::class)
+ * )
+ * @OA\Response (
+ *     response=201,
+ *     description="New user was successfully created.",
+ *     @Model(type=CreatedResponse::class)
+ * ),
+ * @OA\Response (
+ *     response=400,
+ *     description="The given data was invalid.",
+ *     @Model(type=InvalidResponse::class)
+ * )
+ * @OA\Tag(name="Authentication")
+ * @package App\Controller
+ */
 class RegisterController extends AbstractFOSRestController {
 
     private $userRepository;
@@ -42,12 +66,12 @@ class RegisterController extends AbstractFOSRestController {
     public function register( Request $request ): Response {
         $user = new User();
 
-        $form = $this->createFormBuilder($user, [ 'csrf_protection' => false ])
-            ->add('first_name', TextType::class)
-            ->add('last_name', TextType::class)
-            ->add('age', NumberType::class)
-            ->add('email', EmailType::class)
-            ->add('password', PasswordType::class)
+        $form = $this->createFormBuilder( $user, [ 'csrf_protection' => false ] )
+            ->add( 'first_name', TextType::class )
+            ->add( 'last_name', TextType::class )
+            ->add( 'age', NumberType::class )
+            ->add( 'email', EmailType::class )
+            ->add( 'password', PasswordType::class )
             ->getForm();
 
         $form->submit(
@@ -64,7 +88,7 @@ class RegisterController extends AbstractFOSRestController {
             $user->setPassword(
                 $this->passwordEncoder->encodePassword(
                     $user,
-                    $form->get('password')->getData()
+                    $form->get( 'password' )->getData()
                 )
             );
         }

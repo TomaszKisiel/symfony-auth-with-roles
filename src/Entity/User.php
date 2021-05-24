@@ -33,6 +33,7 @@ class User implements UserInterface, \JsonSerializable {
     /**
      * @ORM\Column(type="json")
      * @Assert\NotBlank
+     * @var string[]
      */
     private $roles = [ "ROLE_USER" ];
 
