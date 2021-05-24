@@ -12,22 +12,10 @@ To start working with this project, clone it on your local.
 git clone https://github.com/TomaszKisiel/symfony-auth-with-roles
 ```
 
-Install all dependencies.
-
-```
-composer install
-```
-
 Start docker service on your machine and issue the command.
 
 ```
 docker-compose up -d --build
-```
-
-Before you starting dealing with API migrate database first.
-
-```
-docker-compose exec php bin/console doctrine:migrations:migrate
 ```
 
 Now the project is running on ```localhost``` port ```80```. Have fun!
@@ -50,7 +38,7 @@ Postman or Insomnia.
 | GET | /api/users | - | 200 | 401, 403 |
 | GET | /api/users/{id} | id | 200 | 401, 403 |
 | POST | /api/users | email, password, roles, first_name, last_name, age | 201 | 400,401,403 |
-| PATCH | /api/users/{id} | email, password, roles, first_name, last_name, age | 200 | 400,401,403 |
+| PATCH | /api/users/{id} | id, email, password, roles, first_name, last_name, age | 200 | 400,401,403 |
 | DELETE | /api/users/{id} | id | 200 | 401,403 |
 
 ## :sob: Troubleshooting
