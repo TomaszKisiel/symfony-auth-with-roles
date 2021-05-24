@@ -51,7 +51,27 @@ class UserController extends AbstractFOSRestController {
 
     /**
      * @Route("/api/users", name="users_index", methods={"GET"})
-     * @OA\Get(summary="Get users list")
+     * @OA\Get(
+     *     summary="Get users list",
+     *     @OA\Parameter(
+     *         name="page",
+     *         in="query",
+     *         description="selected page number to display",
+     *         @OA\Schema(
+     *             type="integer",
+     *             example=1
+     *         )
+     *     ),
+     *     @OA\Parameter(
+     *         name="per_page",
+     *         in="query",
+     *         description="selected amount of users per page",
+     *         @OA\Schema(
+     *             type="integer",
+     *             example=10
+     *         )
+     *     ),
+     * )
      * @OA\Response (
      *     response=200,
      *     description="Returns paginated list of registered users",
